@@ -1,0 +1,54 @@
+@import url('https://fonts.googleapis.com/css2?family=Miranda+Sans:ital,wght@0,400..700;1,400..700&display=swap');
+
+* {
+  padding: 0px;
+  margin: 0px;
+  font-family: "Miranda Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: <weight>;
+  font-style: normal;
+  --black-ink: #0C1821;
+  --prussian-blue: #1B2A41;
+  --charcoal-blue: #324A5F;
+  --pacific-blue: #58A4B0;
+  --cool-sky: #63ADF2;
+}
+
+header {
+  display: flex;
+  height:50px;
+  padding: 15px;
+  background-color: var(--prussian-blue);
+  color:whitesmoke;
+  justify-content:start;
+  align-items:center;
+  box-shadow: 1px 0px 1px var(--black-ink);
+}
+
+.navbar {
+  width:100%;
+  padding: 0px 10px;
+  justify-content:space-between;
+  align-items:center;
+  display:flex;
+}
+
+.navbar-menu > ul {
+  display:flex;
+  gap:20px;
+  list-style:none;
+  list-decoration:none;
+}
+
+li {
+  list-decoration:none;
+}
+a {
+  font-weight:bold;
+  color:whitesmoke;
+  text-decoration:none;
+}
+
+a:hover{
+  text-decoration:underline;
+}
