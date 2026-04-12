@@ -1,6 +1,7 @@
 # RH Pointer
 
-Sistema de Gerenciamento de ponto de RH, para sistemas empresarias de micro e pequenas empresas
+Sistema de Gerenciamento de ponto de RH, para sistemas empresarias de micro e pequeno porte
+
 
 <p align="center">
   <a href="https://go-skill-icons.vercel.app">

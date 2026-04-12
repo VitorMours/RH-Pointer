@@ -1,0 +1,19 @@
+{
+    "name": "anton/ponto_eletronico",
+    "type": "project",
+    "autoload": {
+        "psr-4": {
+            "Anton\\PontoEletronico\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Joao Vitor",
+            "email": "jvrezendemoura@gmail.com"
+        }
+    ],
+    "require": {
+        "phpunit/phpunit": "^13.1",
+        "robmorgan/phinx": "^0.16.11"
+    }
+}
