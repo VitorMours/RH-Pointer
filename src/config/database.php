@@ -6,10 +6,9 @@
     private string $username = "root";
     private string $password = "";
     private string $database = "ponto_eletronico";
-
+  
     public function create_connection() {
       $connection = new mysqli($this->server, $this->username, $this->password, $this->database, $this->port);
-
       if($connection->connect_error){
         die("Database connection failed: ". $connection->connect_error);
       }

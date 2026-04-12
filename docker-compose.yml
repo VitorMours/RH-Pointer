@@ -1,0 +1,72 @@
+services:
+
+  # ─── Aplicação PHP ───────────────────────────────────────────
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: php_app
+    restart: unless-stopped
+    ports:
+      - "8000:80"         # Acesse em http://localhost:8080
+    volumes:
+      - .:/var/www/html   # Sincroniza seus arquivos em tempo real
+    environment:
+      DB_HOST: db
+      DB_PORT: 3306
+      DB_NAME: ${DB_NAME}
+      DB_USER: ${DB_USER}
+      DB_PASS: ${DB_PASS}
+    depends_on:
+      db:
+        condition: service_healthy
+    networks:
+      - app_network
+
+  # ─── Banco de dados MySQL ─────────────────────────────────────
+  db:
+    image: mysql:8.0
+    container_name: mysql_db
+    restart: unless-stopped
+    ports:
+      - "3307:3306"       # Conecte pelo VSCode em localhost:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASS}
+      MYSQL_DATABASE: ${DB_NAME}
+      MYSQL_USER: ${DB_USER}
+      MYSQL_PASSWORD: ${DB_PASS}
+    volumes:
+      - db_data:/var/lib/mysql            # Dados persistem mesmo ao derrubar o container
+      - ./database/migrations:/docker-entrypoint-initdb.d  # Roda SQLs na criação do banco
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-p${DB_ROOT_PASS}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - app_network
+
+  # ─── phpMyAdmin (interface web para o banco) ──────────────────
+  phpmyadmin:
+    image: phpmyadmin:latest
+    container_name: phpmyadmin
+    restart: unless-stopped
+    ports:
+      - "8080:80"         # Acesse em http://localhost:8081
+    environment:
+      PMA_HOST: db
+      PMA_PORT: 3306
+      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASS}
+    depends_on:
+      - db
+    networks:
+      - app_network
+
+# ─── Volumes e Redes ─────────────────────────────────────────────
+volumes:
+  db_data:
+    driver: local
+
+networks:
+  app_network:
+    driver: bridge
