@@ -1,11 +1,14 @@
 <?php
+
 session_start();
+date_default_timezone_set('America/Sao_Paulo');
+setlocale(LC_ALL, 'pt_BR.UTF-8');
 
-require_once __DIR__ . '/../src/config/config.php';
-require_once __DIR__ . '/../src/controllers/home_controller.php';
-require_once __DIR__ . '/../src/controllers/auth_controller.php';
-require_once __DIR__ . '/../src/config/config.php';
+require_once __DIR__ . '/../vendor/autoload.php';
 
+use App\Controllers\HomeController;
+use App\Controllers\AuthController;
+use App\Controllers\DashboardController;
 
 
 $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
@@ -24,6 +27,14 @@ switch ($uri) {
     case '/register':
         $controller = new AuthController();
         $controller->register();
+        break;
+    case '/logout':
+        $controller = new AuthController();
+        $controller->logout();
+        break;
+    case '/dashboard':
+        $controller = new DashboardController();
+        $controller->index();
         break;
     default:
         http_response_code(404);

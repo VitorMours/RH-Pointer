@@ -13,6 +13,9 @@
     <section class="auth-form" id="register-form">
       <h2 class="form-title">Register</h2>
       <form action="/register" method="POST">
+        <?php if (!empty($error)): ?>
+          <p class="error-text"><?= htmlspecialchars($error) ?></p>
+        <?php endif; ?>
         <div class="form-control">
           <label for="name">Name:</label>
           <input type="text" id="name" name="name" required>
