@@ -1,10 +1,21 @@
 <?php
 namespace App\Models;
 
+use App\Models\User;
+use App\Database\Database;
+
 class Register {
+
+
+    private PDO $pdo;
+    private const TABLE = "registers";
+
+    public function __construct(private User $user) {
+        $this->pdo = Database::getInstance();   
+    }
+
+
     public function registerUser($name, $email, $password) {
-        // Lógica simples de registro (substitua pela implementação real)
-        // Por exemplo, salvar no banco de dados
         return true; // Simula sucesso
     }
 }
