@@ -39,4 +39,6 @@ RUN echo '<Directory /var/www/html/public>\n\
 </Directory>' > /etc/apache2/conf-available/project.conf \
     && a2enconf project
 
+RUN vendor/binx/phinx migrate
+
 EXPOSE 80

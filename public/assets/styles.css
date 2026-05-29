@@ -39,6 +39,41 @@ header {
   align-items: center;
   display: flex;
 }
+.navbar-brand {
+  display:flex;
+  align-items: center;
+}
+
+.drawer {
+  background-color: var(--light-grey);
+  color: black;
+  position: fixed;
+  left: -300px; /* Joga para fora da tela */
+  width: 300px;
+  height: 100%;
+  z-index: 1000;
+  transition: left 0.3s ease-in-out; /* Animação */
+  box-sizing: border-box;
+  padding: 20px;
+
+}
+.drawer.open {
+  left: 0 !important; /* Traz para dentro da tela */
+}
+
+.drawer > ul > li  > a{
+  color:black;
+}
+
+
+#header-menu{
+  background-color: transparent;
+  color:whitesmoke;
+  border:none;
+  box-shadow:none;
+
+}
+
 
 .navbar-menu > ul {
   display: flex;
